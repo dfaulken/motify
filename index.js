@@ -36,7 +36,11 @@ $(function(){
     [  0,  58,   'vertical',  42, 'white'],
     [  0,  70, 'horizontal',  60, 'white'],
     [  0, 100, 'horizontal', 220, 'white'],
-    [180,  70, 'horizontal',  40, 'white']
+    [140,27.5,   'vertical',30.5, 'white'],
+    [152,27.5,   'vertical',  21, 'white'],
+    [180,  70, 'horizontal',  40, 'white'],
+    [210,  58, 'horizontal',  10, 'white'],
+    [220,  70,   'vertical',  30, 'white']
   ]
   drawLines(lineData)
 
@@ -46,11 +50,12 @@ $(function(){
   //fourth element: height in feet
   //fifth element: box color, as 'red', 'green', or 'yellow'.
   var boxData = [
-    [  0, 58, 1.5, 12, 'red'],
-    [ 60, 58, 1.5, 12, 'yellow'],
-    [140, 58, 1.5, 12, 'yellow'],
-    [220, 46, 1.5, 12, 'green'],
-    [220, 58, 1.5, 12, 'yellow']
+    [  0,  58, 1.5,  12, 'red'],
+    [ 60,  58, 1.5,  12, 'yellow'],
+    [140,27.5, 12, 1.5, 'red'],
+    [140,  58, 1.5,  12, 'yellow'],
+    [220,  46, 1.5,  12, 'green'],
+    [220,  58, 1.5,  12, 'yellow']
   ]
   drawBoxes(boxData)
 
@@ -75,9 +80,16 @@ $(function(){
     [100,  70],
     [120,  58],
     [120,  70],
+    [140, 27.5],
+    [140, 37.5],
+    [140, 48.5],
     [140,  58],
     [140,  70],
     [140, 100],
+    [146, 27.5],
+    [152, 27.5],
+    [152, 37.5],
+    [152, 48.5],
     [180,  70],
     [220,  46],
     [210,  58],
