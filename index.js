@@ -22,11 +22,34 @@ BOX_COLORS = {
 $(function(){
   var paper = Raphael(MARGIN, MARGIN, CANVAS_WIDTH, CANVAS_HEIGHT)
 
-  //where each cone goes, as an array of arrays.
+  //first element: starting point in horizontal feet from left side of course
+  //second element: starting point in vertical feet from top of course
+  //third element: line orientation, 'horizontal' or 'vertical'
+  //fourth element: line length in feet
+  var lineData = [
+  ]
+  drawLines(lineData)
+
+  //first element: horizontal feet from left side of course
+  //second element: vertical feet from top of course
+  //third element: width in feet
+  //fourth element: height in feet
+  //and the final element is the box color,
+  //as 'red', 'green', or 'yellow'.
+  var boxData = [
+    [ 60,   0,  20,   2, 'red'],
+    [ 60,  60,  20,   2, 'yellow'],
+    [ 60, 140,  20,   2, 'yellow'],
+    [ 60, 200,  20,   2, 'red'],
+    [ 80, 200,  20,   2, 'green'],
+    [130, 140,   2,  20, 'red']
+  ]
+  drawBoxes(boxData)
+
   //first element: horizontal feet from left side of course
   //second element: vertical feet from top of course
   //cones will be centered around the point specified here.
-  var coneLocs = [
+  var coneData = [
     [  0,   0],
     [  0,  20],
     [  0,  40],
@@ -64,44 +87,35 @@ $(function(){
     [130, 150],
     [130, 160]
   ]
+  drawCones(coneData)
 
-  //first element: horizontal feet from left side of course
-  //second element: vertical feet from top of course
-  //third element: width in feet
-  //fourth element: height in feet
-  //and the final element is the box color,
-  //as 'red', 'green', or 'yellow'.
-  var boxLocs = [
-    [ 60,   0,  20,   2, 'red'],
-    [ 60,  60,  20,   2, 'yellow'],
-    [ 60, 140,  20,   2, 'yellow'],
-    [ 60, 200,  20,   2, 'red'],
-    [ 80, 200,  20,   2, 'green'],
-    [130, 140,   2,  20, 'red']
-  ]
-
-  //draw the boxes
-  for(var a = 0; a < boxLocs.length; a++){
-    var x = MARGIN + boxLocs[a][0] * FEET - 2
-    var y = MARGIN + boxLocs[a][1] * FEET - 2
-    var width = boxLocs[a][2] * FEET
-    var height = boxLocs[a][3] * FEET
-    var color = BOX_COLORS[boxLocs[a][4]]
-    var box = paper.rect(x, y, width, height)
-    box.attr('fill', color)
+  function drawBoxes(boxLocs){
+    for(var a = 0; a < boxLocs.length; a++){
+      var x = MARGIN + boxLocs[a][0] * FEET - 2
+      var y = MARGIN + boxLocs[a][1] * FEET - 2
+      var width = boxLocs[a][2] * FEET
+      var height = boxLocs[a][3] * FEET
+      var color = BOX_COLORS[boxLocs[a][4]]
+      var box = paper.rect(x, y, width, height)
+      box.attr('fill', color)
+    }
   }
 
-  //draw the cones
-  for(var a = 0; a < coneLocs.length; a++){
-    //half the size is effectively the radius,
-    //and then multiply the coordinates by the foot-pixels multiplier
-    var x = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
-    var y = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][1] * FEET
-    //initialize a square at the calculated coordinates
-    //(square since height and width are both the cone's size)
-    var cone = paper.rect(x, y,
-      CONE_ATTRS['size'], CONE_ATTRS['size'],
-      CONE_ATTRS['radius'])
-    cone.attr('fill', CONE_ATTRS['color'])
+  function drawCones(coneLocs){
+    for(var a = 0; a < coneLocs.length; a++){
+      //half the size is effectively the radius,
+      //and then multiply the coordinates by the foot-pixels multiplier
+      var x = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
+      var y = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][1] * FEET
+      //initialize a square at the calculated coordinates
+      //(square since height and width are both the cone's size)
+      var cone = paper.rect(x, y,
+        CONE_ATTRS['size'], CONE_ATTRS['size'],
+        CONE_ATTRS['radius'])
+      cone.attr('fill', CONE_ATTRS['color'])
+    }
+  }
+
+  function drawLines(lineLocs){
   }
 })
