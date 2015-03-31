@@ -117,6 +117,8 @@ $(function(){
   ]
   var cones = drawCones(coneData)
 
+  drawBus()
+
   function feetXToPixels(num){
     return LEFT_MARGIN + MARGIN + (num * FEET)
   }
@@ -183,5 +185,14 @@ $(function(){
         return cones[a]
       }
     }
+  }
+
+  function drawBus(){
+    var bus_x = feetXToPixels(225)
+    var bus_y = feetYToPixels(47)
+    var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET)
+    bus.attr('fill', '#fff')
+    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000)
+    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000)
   }
 })
