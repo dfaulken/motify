@@ -192,7 +192,6 @@ $(function(){
     var bus_y = feetYToPixels(47)
     var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET)
     bus.attr('fill', '#fff')
-    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000)
-    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000)
+    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000, '<>')
   }
 })
