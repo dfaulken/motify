@@ -32,6 +32,11 @@ $(function(){
   //fourth element: line length in feet
   //fifth element: line color, 'white' or 'yellow'
   var lineData = [
+    [  0,  58, 'horizontal', 140, 'white'],
+    [  0,  58,   'vertical',  42, 'white'],
+    [  0,  70, 'horizontal',  60, 'white'],
+    [  0, 100, 'horizontal', 220, 'white'],
+    [180,  70, 'horizontal',  40, 'white']
   ]
   drawLines(lineData)
 
@@ -39,9 +44,13 @@ $(function(){
   //second element: vertical feet from top of course
   //third element: width in feet
   //fourth element: height in feet
-  //and the final element is the box color,
-  //as 'red', 'green', or 'yellow'.
+  //fifth element: box color, as 'red', 'green', or 'yellow'.
   var boxData = [
+    [  0, 58, 1.5, 12, 'red'],
+    [ 60, 58, 1.5, 12, 'yellow'],
+    [140, 58, 1.5, 12, 'yellow'],
+    [220, 46, 1.5, 12, 'green'],
+    [220, 58, 1.5, 12, 'yellow']
   ]
   drawBoxes(boxData)
 
@@ -69,12 +78,32 @@ $(function(){
     [140,  58],
     [140,  70],
     [140, 100],
+    [180,  70],
     [220,  46],
+    [210,  58],
     [220,  58],
     [220,  70],
     [220, 100]
   ]
   drawCones(coneData)
+
+  function drawLines(lineLocs){
+    for(var a = 0; a < lineLocs.length; a++){
+      var x = LEFT_MARGIN + MARGIN + lineLocs[a][0] * FEET - 1
+      var y = MARGIN + lineLocs[a][1] * FEET - 1
+      var width, height;
+      if(lineLocs[a][2] == 'horizontal'){
+        width = lineLocs[a][3] * FEET
+        height = 2
+      }
+      else{
+        width = 2
+        height = lineLocs[a][3] * FEET
+      }
+      var line = paper.rect(x, y, width, height)
+      line.attr('fill', LINE_COLORS[lineLocs[a][4]])
+    }
+  }
 
   function drawBoxes(boxLocs){
     for(var a = 0; a < boxLocs.length; a++){
@@ -100,24 +129,6 @@ $(function(){
         CONE_ATTRS['size'], CONE_ATTRS['size'],
         CONE_ATTRS['radius'])
       cone.attr('fill', CONE_ATTRS['color'])
-    }
-  }
-
-  function drawLines(lineLocs){
-    for(var a = 0; a < lineLocs.length; a++){
-      var x = LEFT_MARGIN + MARGIN + lineLocs[a][0] * FEET - 1
-      var y = MARGIN + lineLocs[a][1] * FEET - 1
-      var width, height;
-      if(lineLocs[a][2] == 'horizontal'){
-        width = lineLocs[a][3] * FEET
-        height = 2
-      }
-      else{
-        width = 2
-        height = lineLocs[a][3] * FEET
-      }
-      var line = paper.rect(x, y, width, height)
-      line.attr('fill', LINE_COLORS[lineLocs[a][4]])
     }
   }
 })
