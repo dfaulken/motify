@@ -1,11 +1,12 @@
 //number of pixels that counts as 1 foot
 FEET = 3
 //CSS margin around the paper
+LEFT_MARGIN = 100
 MARGIN = 25
 //width of the canvas, from CSS
-CANVAS_WIDTH = 500
+CANVAS_WIDTH = 1200
 //height of the canvas, from CSS
-CANVAS_HEIGHT = 700
+CANVAS_HEIGHT = 400
 CONE_ATTRS = {
   color: '#f76f1b',
   //diameter in pixels
@@ -31,14 +32,6 @@ $(function(){
   //fourth element: line length in feet
   //fifth element: line color, 'white' or 'yellow'
   var lineData = [
-    [  0,   0, 'horizontal',  80, 'white' ],
-    [  0,   0, 'vertical'  , 200, 'white' ],
-    [  0, 200, 'horizontal',  80, 'white' ],
-    [ 60,   0, 'vertical'  , 140, 'white' ],
-    [ 80,   0, 'vertical'  , 140, 'white' ],
-    [ 80, 140, 'horizontal',  50, 'white' ],
-    [ 80, 190, 'vertical'  ,  10, 'white' ],
-    [110, 160, 'horizontal',  20, 'white' ]
   ]
   drawLines(lineData)
 
@@ -49,12 +42,6 @@ $(function(){
   //and the final element is the box color,
   //as 'red', 'green', or 'yellow'.
   var boxData = [
-    [ 60,   0,  20,   2, 'red'],
-    [ 60,  60,  20,   2, 'yellow'],
-    [ 60, 140,  20,   2, 'yellow'],
-    [ 60, 200,  20,   2, 'red'],
-    [ 80, 200,  20,   2, 'green'],
-    [130, 140,   2,  20, 'red']
   ]
   drawBoxes(boxData)
 
@@ -62,48 +49,36 @@ $(function(){
   //second element: vertical feet from top of course
   //cones will be centered around the point specified here.
   var coneData = [
-    [  0,   0],
-    [  0,  20],
-    [  0,  40],
-    [  0,  60],
-    [  0,  80],
+    [  0,  58],
+    [  0,  64],
+    [  0,  70],
     [  0, 100],
-    [  0, 120],
-    [  0, 140],
-    [  0, 200],
-    [ 60,   0],
-    [ 60,  20],
-    [ 60,  40],
-    [ 60,  60],
-    [ 60,  80],
+    [ 20,  58],
+    [ 20,  70],
+    [ 40,  58],
+    [ 40,  70],
+    [ 60,  58],
+    [ 60,  70],
     [ 60, 100],
-    [ 60, 120],
-    [ 60, 140],
-    [ 60, 200],
-    [ 70,   0],
-    [ 70, 200],
-    [ 80,   0],
-    [ 80,  20],
-    [ 80,  40],
-    [ 80,  60],
-    [ 80,  80],
-    [ 80, 100],
-    [ 80, 120],
-    [ 80, 140],
-    [ 80, 190],
-    [ 80, 200],
-    [100, 200],
-    [110, 140],
-    [110, 160],
-    [130, 140],
-    [130, 150],
-    [130, 160]
+    [ 80,  58],
+    [ 80,  70],
+    [100,  58],
+    [100,  70],
+    [120,  58],
+    [120,  70],
+    [140,  58],
+    [140,  70],
+    [140, 100],
+    [220,  46],
+    [220,  58],
+    [220,  70],
+    [220, 100]
   ]
   drawCones(coneData)
 
   function drawBoxes(boxLocs){
     for(var a = 0; a < boxLocs.length; a++){
-      var x = MARGIN + boxLocs[a][0] * FEET - 2
+      var x = LEFT_MARGIN + MARGIN + boxLocs[a][0] * FEET - 2
       var y = MARGIN + boxLocs[a][1] * FEET - 2
       var width = boxLocs[a][2] * FEET
       var height = boxLocs[a][3] * FEET
@@ -117,7 +92,7 @@ $(function(){
     for(var a = 0; a < coneLocs.length; a++){
       //half the size is effectively the radius,
       //and then multiply the coordinates by the foot-pixels multiplier
-      var x = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
+      var x = LEFT_MARGIN + MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
       var y = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][1] * FEET
       //initialize a square at the calculated coordinates
       //(square since height and width are both the cone's size)
@@ -130,7 +105,7 @@ $(function(){
 
   function drawLines(lineLocs){
     for(var a = 0; a < lineLocs.length; a++){
-      var x = MARGIN + lineLocs[a][0] * FEET - 1
+      var x = LEFT_MARGIN + MARGIN + lineLocs[a][0] * FEET - 1
       var y = MARGIN + lineLocs[a][1] * FEET - 1
       var width, height;
       if(lineLocs[a][2] == 'horizontal'){
