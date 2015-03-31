@@ -117,10 +117,18 @@ $(function(){
   ]
   var cones = drawCones(coneData)
 
+  function feetXToPixels(num){
+    return LEFT_MARGIN + MARGIN + (num * FEET)
+  }
+
+  function feetYToPixels(num){
+    return MARGIN + (num * FEET)
+  }
+
   function drawLines(lineLocs){
     for(var a = 0; a < lineLocs.length; a++){
-      var x = LEFT_MARGIN + MARGIN + lineLocs[a][0] * FEET - 1
-      var y = MARGIN + lineLocs[a][1] * FEET - 1
+      var x = feetXToPixels(lineLocs[a][0]) - 1
+      var y = feetYToPixels(lineLocs[a][1]) - 1
       var width, height;
       if(lineLocs[a][2] == 'horizontal'){
         width = lineLocs[a][3] * FEET
@@ -137,8 +145,8 @@ $(function(){
 
   function drawBoxes(boxLocs){
     for(var a = 0; a < boxLocs.length; a++){
-      var x = LEFT_MARGIN + MARGIN + boxLocs[a][0] * FEET - 2
-      var y = MARGIN + boxLocs[a][1] * FEET - 2
+      var x = feetXToPixels(boxLocs[a][0]) - 2
+      var y = feetYToPixels(boxLocs[a][1]) - 2
       var width = boxLocs[a][2] * FEET
       var height = boxLocs[a][3] * FEET
       var color = BOX_COLORS[boxLocs[a][4]]
@@ -152,8 +160,8 @@ $(function(){
     for(var a = 0; a < coneLocs.length; a++){
       //half the size is effectively the radius,
       //and then multiply the coordinates by the foot-pixels multiplier
-      var x = LEFT_MARGIN + MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
-      var y = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][1] * FEET
+      var x = feetXToPixels(coneLocs[a][0]) - (CONE_ATTRS['size'] / 2)
+      var y = feetYToPixels(coneLocs[a][1]) - (CONE_ATTRS['size'] / 2)
       //initialize a square at the calculated coordinates
       //(square since height and width are both the cone's size)
       var cone = paper.rect(x, y,
@@ -162,7 +170,7 @@ $(function(){
       cone.attr('fill', CONE_ATTRS['color'])
       cones[a] = cone
     }
-    return cones;
+    return cones
   }
 
   function coneAt(feet_x, feet_y, cones){
