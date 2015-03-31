@@ -10,7 +10,7 @@ CANVAS_HEIGHT = 400
 CONE_ATTRS = {
   color: '#f76f1b',
   //diameter in pixels
-  size: 8,
+  size: 5,
   //haven't figured out what Raphael does with this value yet
   radius: 3
 }
@@ -55,7 +55,9 @@ $(function(){
     [140,27.5,  12, 1.5, 'red'   ],
     [140,  58, 1.5,  12, 'yellow'],
     [220,  46, 1.5,  12, 'green' ],
-    [220,  58, 1.5,  12, 'red'   ]
+    [220,  58, 1.5,  12, 'red'   ],
+    //alley dock boxes
+    [163.7,  68,   2,   3, 'green' ]
   ]
   drawBoxes(boxData)
 
@@ -111,7 +113,7 @@ $(function(){
     [220,  70],
     [220, 100]
   ]
-  drawCones(coneData)
+  var cones = drawCones(coneData)
 
   function drawLines(lineLocs){
     for(var a = 0; a < lineLocs.length; a++){
@@ -144,6 +146,7 @@ $(function(){
   }
 
   function drawCones(coneLocs){
+    var cones = []
     for(var a = 0; a < coneLocs.length; a++){
       //half the size is effectively the radius,
       //and then multiply the coordinates by the foot-pixels multiplier
@@ -155,6 +158,20 @@ $(function(){
         CONE_ATTRS['size'], CONE_ATTRS['size'],
         CONE_ATTRS['radius'])
       cone.attr('fill', CONE_ATTRS['color'])
+      cones[a] = cone
+    }
+    return cones;
+  }
+
+  function coneAt(feet_x, feet_y, cones){
+    for(var a = 0; a < cones.length; a++){
+      //not sure why these are needed, but it works
+      var x = LEFT_MARGIN + MARGIN + feet_x * FEET - 2.5
+      var y = MARGIN + feet_y * FEET - 2.5
+      var attrs = cones[a].getBBox()
+      if(x == attrs['x'] && y == attrs['y']){
+        return cones[a]
+      }
     }
   }
 })
