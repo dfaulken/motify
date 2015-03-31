@@ -29,15 +29,16 @@ $(function(){
   //second element: starting point in vertical feet from top of course
   //third element: line orientation, 'horizontal' or 'vertical'
   //fourth element: line length in feet
+  //fifth element: line color, 'white' or 'yellow'
   var lineData = [
-    [  0,   0, 'horizontal',  80],
-    [  0,   0, 'vertical'  , 200],
-    [  0, 200, 'horizontal',  80],
-    [ 60,   0, 'vertical'  , 140],
-    [ 80,   0, 'vertical'  , 140],
-    [ 80, 140, 'horizontal',  50],
-    [ 80, 190, 'vertical'  ,  10],
-    [110, 160, 'horizontal',  20]
+    [  0,   0, 'horizontal',  80, 'white' ],
+    [  0,   0, 'vertical'  , 200, 'white' ],
+    [  0, 200, 'horizontal',  80, 'white' ],
+    [ 60,   0, 'vertical'  , 140, 'white' ],
+    [ 80,   0, 'vertical'  , 140, 'white' ],
+    [ 80, 140, 'horizontal',  50, 'white' ],
+    [ 80, 190, 'vertical'  ,  10, 'white' ],
+    [110, 160, 'horizontal',  20, 'white' ]
   ]
   drawLines(lineData)
 
@@ -141,7 +142,7 @@ $(function(){
         height = lineLocs[a][3] * FEET
       }
       var line = paper.rect(x, y, width, height)
-      line.attr('fill', '#fff')
+      line.attr('fill', LINE_COLORS[lineLocs[a][4]])
     }
   }
 })
