@@ -1,3 +1,10 @@
 body{
   background: lightgray;
 }
+
+.paper{
+  background: black;
+  margin: 25px 25px 25px 25px;
+  width: 500px;
+  height: 700px;
+}
