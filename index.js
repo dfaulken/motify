@@ -15,7 +15,7 @@ CONE_ATTRS = {
 }
 BOX_COLORS = {
   red: '#f24d4d',
-  yellow: '',
+  yellow: '#f7ea5d',
   green: ''
 }
 
@@ -63,7 +63,9 @@ $(function(){
   //and the final element is the box color,
   //as 'red', 'green', or 'yellow'.
   var boxLocs = [
-    [60, 2, 20, 2, 'red'],
+    [60,   2,  20,   2, 'red'],
+    [60,  59,  20,   2, 'yellow'],
+    [60, 139,  20,   2, 'yellow'] 
   ]
 
   //draw the boxes
