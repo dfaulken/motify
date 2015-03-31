@@ -9,14 +9,14 @@ CANVAS_HEIGHT = 700
 CONE_ATTRS = {
   color: '#f76f1b',
   //diameter in pixels
-  size: 10,
+  size: 8,
   //haven't figured out what Raphael does with this value yet
   radius: 3
 }
 BOX_COLORS = {
   red: '#f24d4d',
   yellow: '#f7ea5d',
-  green: ''
+  green: '#76ce1e'
 }
 
 $(function(){
@@ -44,7 +44,9 @@ $(function(){
     [ 60, 100],
     [ 60, 120],
     [ 60, 140],
+    [ 60, 200],
     [ 70,   0],
+    [ 70, 200],
     [ 80,   0],
     [ 80,  20],
     [ 80,  40],
@@ -53,7 +55,14 @@ $(function(){
     [ 80, 100],
     [ 80, 120],
     [ 80, 140],
-    [ 80, 200]
+    [ 80, 190],
+    [ 80, 200],
+    [100, 200],
+    [110, 140],
+    [110, 160],
+    [130, 140],
+    [130, 150],
+    [130, 160]
   ]
 
   //first element: horizontal feet from left side of course
@@ -63,15 +72,18 @@ $(function(){
   //and the final element is the box color,
   //as 'red', 'green', or 'yellow'.
   var boxLocs = [
-    [60,   2,  20,   2, 'red'],
-    [60,  59,  20,   2, 'yellow'],
-    [60, 139,  20,   2, 'yellow'] 
+    [ 60,   0,  20,   2, 'red'],
+    [ 60,  60,  20,   2, 'yellow'],
+    [ 60, 140,  20,   2, 'yellow'],
+    [ 60, 200,  20,   2, 'red'],
+    [ 80, 200,  20,   2, 'green'],
+    [130, 140,   2,  20, 'red']
   ]
 
   //draw the boxes
   for(var a = 0; a < boxLocs.length; a++){
-    var x = MARGIN + boxLocs[a][0] * FEET
-    var y = MARGIN + boxLocs[a][1] * FEET
+    var x = MARGIN + boxLocs[a][0] * FEET - 2
+    var y = MARGIN + boxLocs[a][1] * FEET - 2
     var width = boxLocs[a][2] * FEET
     var height = boxLocs[a][3] * FEET
     var color = BOX_COLORS[boxLocs[a][4]]
