@@ -19,7 +19,8 @@ BOX_COLORS = {
   green: '#76ce1e'
 }
 LINE_COLORS = {
-  white: '#fff'
+  white: '#fff',
+  yellow: '#f7ea5d'
 }
 
 $(function(){
@@ -29,15 +30,18 @@ $(function(){
   //second element: starting point in vertical feet from top of course
   //third element: line orientation, 'horizontal' or 'vertical'
   //fourth element: line length in feet
+  //fifth element: line style, 'solid' or 'dashed'
+  //fifth element: line color, 'white' or 'yellow'
   var lineData = [
-    [  0,   0, 'horizontal',  80],
-    [  0,   0, 'vertical'  , 200],
-    [  0, 200, 'horizontal',  80],
-    [ 60,   0, 'vertical'  , 140],
-    [ 80,   0, 'vertical'  , 140],
-    [ 80, 140, 'horizontal',  50],
-    [ 80, 190, 'vertical'  ,  10],
-    [110, 160, 'horizontal',  20]
+    [  0,   0, 'horizontal',  80, 'solid' , 'white' ],
+    [  0,   0, 'vertical'  , 200, 'solid' , 'white' ],
+    [  0, 200, 'horizontal',  80, 'solid' , 'white' ],
+    [ 30,   0, 'vertical'  , 200, 'dashed', 'yellow'],
+    [ 60,   0, 'vertical'  , 140, 'solid' , 'white' ],
+    [ 80,   0, 'vertical'  , 140, 'solid' , 'white' ],
+    [ 80, 140, 'horizontal',  50, 'solid' , 'white' ],
+    [ 80, 190, 'vertical'  ,  10, 'solid' , 'white' ],
+    [110, 160, 'horizontal',  20, 'solid' , 'white' ]
   ]
   drawLines(lineData)
 
@@ -48,12 +52,12 @@ $(function(){
   //and the final element is the box color,
   //as 'red', 'green', or 'yellow'.
   var boxData = [
-    [ 60,   0,  20,   2, 'red'],
+    [ 60,   0,  20,   2, 'red'   ],
     [ 60,  60,  20,   2, 'yellow'],
     [ 60, 140,  20,   2, 'yellow'],
-    [ 60, 200,  20,   2, 'red'],
-    [ 80, 200,  20,   2, 'green'],
-    [130, 140,   2,  20, 'red']
+    [ 60, 200,  20,   2, 'red'   ],
+    [ 80, 200,  20,   2, 'green' ],
+    [130, 140,   2,  20, 'red'   ]
   ]
   drawBoxes(boxData)
 
@@ -132,16 +136,20 @@ $(function(){
       var x = MARGIN + lineLocs[a][0] * FEET - 1
       var y = MARGIN + lineLocs[a][1] * FEET - 1
       var width, height;
+      var length = lineLocs[a][3] * FEET
       if(lineLocs[a][2] == 'horizontal'){
-        width = lineLocs[a][3] * FEET
+        width = length
         height = 2
       }
       else{
+        height = length
         width = 2
-        height = lineLocs[a][3] * FEET
       }
       var line = paper.rect(x, y, width, height)
-      line.attr('fill', '#fff')
+      line.attr('fill', LINE_COLORS[lineLocs[a][5]])
+      if(lineLocs[a][4] == 'dashed'){
+        line.attr({"stroke-dasharray": "--"})
+      }
     }
   }
 })
