@@ -30,8 +30,14 @@ $(function(){
   //third element: line orientation, 'horizontal' or 'vertical'
   //fourth element: line length in feet
   var lineData = [
-    [0, 0, 'horizontal',  80],
-    [0, 0, 'vertical'  , 200]
+    [  0,   0, 'horizontal',  80],
+    [  0,   0, 'vertical'  , 200],
+    [  0, 200, 'horizontal',  80],
+    [ 60,   0, 'vertical'  , 140],
+    [ 80,   0, 'vertical'  , 140],
+    [ 80, 140, 'horizontal',  50],
+    [ 80, 190, 'vertical'  ,  10],
+    [110, 160, 'horizontal',  20]
   ]
   drawLines(lineData)
 
