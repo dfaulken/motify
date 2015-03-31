@@ -18,6 +18,9 @@ BOX_COLORS = {
   yellow: '#f7ea5d',
   green: '#76ce1e'
 }
+LINE_COLORS = {
+  white: '#fff'
+}
 
 $(function(){
   var paper = Raphael(MARGIN, MARGIN, CANVAS_WIDTH, CANVAS_HEIGHT)
@@ -27,6 +30,8 @@ $(function(){
   //third element: line orientation, 'horizontal' or 'vertical'
   //fourth element: line length in feet
   var lineData = [
+    [0, 0, 'horizontal',  80],
+    [0, 0, 'vertical'  , 200]
   ]
   drawLines(lineData)
 
@@ -117,5 +122,20 @@ $(function(){
   }
 
   function drawLines(lineLocs){
+    for(var a = 0; a < lineLocs.length; a++){
+      var x = MARGIN + lineLocs[a][0] * FEET - 1
+      var y = MARGIN + lineLocs[a][1] * FEET - 1
+      var width, height;
+      if(lineLocs[a][2] == 'horizontal'){
+        width = lineLocs[a][3] * FEET
+        height = 2
+      }
+      else{
+        width = 2
+        height = lineLocs[a][3] * FEET
+      }
+      var line = paper.rect(x, y, width, height)
+      line.attr('fill', '#fff')
+    }
   }
 })
