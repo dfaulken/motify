@@ -28,9 +28,31 @@ $(function(){
   //cones will be centered around the point specified here.
   var coneLocs = [
     [  0,   0],
-    [ 60,   0],
-    [ 80,   0],
+    [  0,  20],
+    [  0,  40],
+    [  0,  60],
+    [  0,  80],
+    [  0, 100],
+    [  0, 120],
+    [  0, 140],
     [  0, 200],
+    [ 60,   0],
+    [ 60,  20],
+    [ 60,  40],
+    [ 60,  60],
+    [ 60,  80],
+    [ 60, 100],
+    [ 60, 120],
+    [ 60, 140],
+    [ 70,   0],
+    [ 80,   0],
+    [ 80,  20],
+    [ 80,  40],
+    [ 80,  60],
+    [ 80,  80],
+    [ 80, 100],
+    [ 80, 120],
+    [ 80, 140],
     [ 80, 200]
   ]
 
@@ -41,22 +63,8 @@ $(function(){
   //and the final element is the box color,
   //as 'red', 'green', or 'yellow'.
   var boxLocs = [
-    [65, 0, 10, 2, 'red'],
+    [60, 2, 20, 2, 'red'],
   ]
-
-  //draw the cones
-  for(var a = 0; a < coneLocs.length; a++){
-    //half the size is effectively the radius,
-    //and then multiply the coordinates by the foot-pixels multiplier
-    var x = MARGIN + coneLocs[a][0] * FEET
-    var y = MARGIN + coneLocs[a][1] * FEET
-    //initialize a square at the calculated coordinates
-    //(square since height and width are both the cone's size)
-    var cone = paper.rect(x, y,
-      CONE_ATTRS['size'], CONE_ATTRS['size'],
-      CONE_ATTRS['radius'])
-    cone.attr('fill', CONE_ATTRS['color'])
-  }
 
   //draw the boxes
   for(var a = 0; a < boxLocs.length; a++){
@@ -67,5 +75,19 @@ $(function(){
     var color = BOX_COLORS[boxLocs[a][4]]
     var box = paper.rect(x, y, width, height)
     box.attr('fill', color)
+  }
+
+  //draw the cones
+  for(var a = 0; a < coneLocs.length; a++){
+    //half the size is effectively the radius,
+    //and then multiply the coordinates by the foot-pixels multiplier
+    var x = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][0] * FEET
+    var y = MARGIN - CONE_ATTRS['size'] / 2 + coneLocs[a][1] * FEET
+    //initialize a square at the calculated coordinates
+    //(square since height and width are both the cone's size)
+    var cone = paper.rect(x, y,
+      CONE_ATTRS['size'], CONE_ATTRS['size'],
+      CONE_ATTRS['radius'])
+    cone.attr('fill', CONE_ATTRS['color'])
   }
 })
