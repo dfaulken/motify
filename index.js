@@ -1,10 +1,10 @@
 //number of pixels that counts as 1 foot
 FEET = 3
 //CSS margin around the paper
-LEFT_MARGIN = 100
+LEFT_MARGIN = 50
 MARGIN = 25
 //width of the canvas, from CSS
-CANVAS_WIDTH = 1200
+CANVAS_WIDTH = 900
 //height of the canvas, from CSS
 CANVAS_HEIGHT = 400
 CONE_ATTRS = {
