@@ -33,14 +33,14 @@ $(function(){
   //fifth element: line color, 'white' or 'yellow'
   var lineData = [
     [  0,  58, 'horizontal', 140, 'white'],
-    [  0,  58,   'vertical',  42, 'white'],
+    [  0,  58, 'vertical'  ,  42, 'white'],
     [  0,  70, 'horizontal',  60, 'white'],
     [  0, 100, 'horizontal', 220, 'white'],
-    [140,27.5,   'vertical',30.5, 'white'],
-    [152,27.5,   'vertical',  21, 'white'],
+    [140,27.5, 'vertical'  ,30.5, 'white'],
+    [152,27.5, 'vertical'  ,  21, 'white'],
     [180,  70, 'horizontal',  40, 'white'],
     [210,  58, 'horizontal',  10, 'white'],
-    [220,  70,   'vertical',  30, 'white']
+    [220,  70, 'vertical'  ,  30, 'white']
   ]
   drawLines(lineData)
 
@@ -57,7 +57,9 @@ $(function(){
     [220,  46, 1.5,  12, 'green' ],
     [220,  58, 1.5,  12, 'red'   ],
     //alley dock boxes
-    [163.7,  68,   2,   3, 'green' ]
+    [160.5,57.5,2.5,2.5, 'green' ],
+    [163.7,68,   2,   3, 'green' ],
+    [179.7,68,   2,   3, 'green' ]
   ]
   drawBoxes(boxData)
 
@@ -102,7 +104,7 @@ $(function(){
     [152,48.5],
     [160, 100],
     [161,  58],
-    //[164,  68],  //is changed from 70 (below) to 68 for alley dock
+  //[164,  68],   //is changed from 70 (below) to 68 for alley dock
     [164,  70],
     [180,  70],
     [180, 100],
