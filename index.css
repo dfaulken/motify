@@ -2,6 +2,9 @@ body{
   background: lightgray;
 }
 
+.centered{
+  text-align: center;
+}
 .paper{
   background: black;
   margin: 25px 25px 25px 25px;
