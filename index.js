@@ -126,7 +126,7 @@ $(function(){
   BUS = drawBus()
 
   $('.buttons').on('click', 'button', function(){
-    alert('These buttons are not yet functional. Please come back later.')
+    alert('These buttons are not yet functional. Please check back later.')
   })
 
   function feetXToPixels(num){
@@ -206,6 +206,7 @@ $(function(){
     var bus_y = feetYToPixels(47)
     var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET, 4)
     bus.attr('fill', '#fff')
+    bus.attr('text', 'BUS')
     return bus
   }
 })
