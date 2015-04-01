@@ -22,6 +22,7 @@ BOX_COLORS = {
   green: '#76ce1e'
 }
 LINE_COLORS = {
+  yellow: '#f7ea5d',
   white: '#fff'
 }
 
@@ -34,15 +35,17 @@ $(function(){
   //fourth element: line length in feet
   //fifth element: line color, 'white' or 'yellow'
   var lineData = [
-    [  0,  58, 'horizontal', 140, 'white'],
-    [  0,  58, 'vertical'  ,  42, 'white'],
-    [  0,  70, 'horizontal',  60, 'white'],
-    [  0, 100, 'horizontal', 220, 'white'],
-    [140,27.5, 'vertical'  ,30.5, 'white'],
-    [152,27.5, 'vertical'  ,  21, 'white'],
-    [180,  70, 'horizontal',  40, 'white'],
-    [210,  58, 'horizontal',  10, 'white'],
-    [220,  70, 'vertical'  ,  30, 'white']
+    [  0,  58, 'horizontal', 140, 'solid' ,  'white'],
+    [  0,  58, 'vertical'  ,  42, 'solid' ,  'white'],
+    [  0,  70, 'horizontal',  60, 'solid' ,  'white'],
+    [  0,  85, 'horizontal', 220, 'dashed', 'yellow'],
+    [  0, 100, 'horizontal', 220, 'solid' ,  'white'],
+    [ 60,  70, 'horizontal',  80, 'dashed',  'white'],
+    [140,27.5, 'vertical'  ,30.5, 'solid' ,  'white'],
+    [152,27.5, 'vertical'  ,  21, 'solid' ,  'white'],
+    [180,  70, 'horizontal',  40, 'solid' ,  'white'],
+    [210,  58, 'horizontal',  10, 'solid' ,  'white'],
+    [220,  70, 'vertical'  ,  30, 'solid' ,  'white']
   ]
   drawLines(lineData)
 
@@ -144,7 +147,10 @@ $(function(){
         to_y = y + lineLocs[a][3] * FEET
       }
       var line = paper.path("M" + x + "," + y + "L" + to_x + "," + to_y)
-      line.attr('stroke', LINE_COLORS[lineLocs[a][4]])
+      if(lineLocs[a][4] == 'dashed'){
+        line.attr('stroke-dasharray', '- ')
+      }
+      line.attr('stroke', LINE_COLORS[lineLocs[a][5]])
     }
   }
 
