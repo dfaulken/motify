@@ -1,5 +1,5 @@
 //temp variable for debugging
-BUS = null
+var BUS;
 //number of pixels that counts as 1 foot
 FEET = 3
 //CSS margin around the paper
@@ -25,6 +25,8 @@ LINE_COLORS = {
   yellow: '#f7ea5d',
   white: '#fff'
 }
+//number of pixels at which the bus steps along the path
+ANIM_STEP = 50
 
 $(function(){
   var paper_div = $('.paper')
@@ -126,6 +128,7 @@ $(function(){
   BUS = drawBus()
 
   var path = paper.path('M830,181L705,181C655,181,605,217,555,217L165,217').attr('stroke', 'orange')
+  animateAlongPath(path, BUS, 30 * FEET, 5 * FEET, 10000, 0)
 
   $('.buttons').on('click', 'button', function(){
     alert('These buttons are not yet functional. Please check back later.')
@@ -212,4 +215,18 @@ $(function(){
     return bus
   }
 
+  function animateAlongPath(path, elem, rot_x, rot_y, time, step){
+    var anim_time = time / (path.getTotalLength() / ANIM_STEP)
+    if (step < time / anim_time){
+      elem.animate({transform: pathTransformationAtStep(path, elem, rot_x, rot_y, step)}, anim_time, '', function(){
+        animateAlongPath(path, elem, rot_x, rot_y, time, step + 1)
+      })
+    }
+  }
+
+  function pathTransformationAtStep(path, elem, rot_x, rot_y, step){
+    var p = path.getPointAtLength(step * ANIM_STEP)
+    var box = elem.getBBox()
+    return "t " + [p.x - box.x - rot_x, p.y - box.y - rot_y] + "r" + (p.alpha - 180)
+  }
 })
