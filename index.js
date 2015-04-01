@@ -26,7 +26,7 @@ LINE_COLORS = {
   white: '#fff'
 }
 //number of pixels at which the bus steps along the path
-ANIM_STEP = 50
+ANIM_STEP = 10
 
 $(function(){
   var paper_div = $('.paper')
@@ -127,7 +127,7 @@ $(function(){
 
   BUS = drawBus()
 
-  var path = paper.path('M830,181L705,181C655,181,605,217,555,217L165,217').attr('stroke', 'orange')
+  var path = paper.path('M840,181L705,181C655,181,605,217,555,217L165,217').attr('stroke', 'orange')
   animateAlongPath(path, BUS, 30 * FEET, 5 * FEET, 10000, 0)
 
   $('.buttons').on('click', 'button', function(){
@@ -226,7 +226,9 @@ $(function(){
 
   function pathTransformationAtStep(path, elem, rot_x, rot_y, step){
     var p = path.getPointAtLength(step * ANIM_STEP)
-    var box = elem.getBBox()
-    return "t " + [p.x - box.x - rot_x, p.y - box.y - rot_y] + "r" + (p.alpha - 180)
+    var box = elem.getBBox(true)
+    var transformation = "T" + [Math.round(p.x) - (box.x + rot_x), Math.round(p.y) - (box.y + rot_y)] + "R" + (p.alpha - 180)
+    //if(step == 20){debugger}
+    return transformation
   }
 })
