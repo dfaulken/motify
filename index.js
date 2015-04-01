@@ -27,7 +27,8 @@ LINE_COLORS = {
 }
 
 $(function(){
-  var paper = Raphael(MARGIN, MARGIN, CANVAS_WIDTH, CANVAS_HEIGHT)
+  var paper_div = $('.paper')
+  var paper = Raphael(paper_div.position().left, paper_div.position().top, CANVAS_WIDTH, CANVAS_HEIGHT)
 
   //first element: starting point in horizontal feet from left side of course
   //second element: starting point in vertical feet from top of course
@@ -123,6 +124,10 @@ $(function(){
   var cones = drawCones(coneData)
 
   BUS = drawBus()
+
+  $('.buttons').on('click', 'button', function(){
+    alert('These buttons are not yet functional. Please come back later.')
+  })
 
   function feetXToPixels(num){
     return LEFT_MARGIN + MARGIN + (num * FEET)

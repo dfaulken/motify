@@ -11,3 +11,7 @@ body{
   width:  900px;
   height: 400px;
 }
+
+.buttons{
+  margin: 25px 0px 0px 25px;
+}
