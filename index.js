@@ -1,3 +1,5 @@
+//temp variable for debugging
+BUS = null
 //number of pixels that counts as 1 foot
 FEET = 3
 //CSS margin around the paper
@@ -117,7 +119,7 @@ $(function(){
   ]
   var cones = drawCones(coneData)
 
-  drawBus()
+  BUS = drawBus()
 
   function feetXToPixels(num){
     return LEFT_MARGIN + MARGIN + (num * FEET)
@@ -129,19 +131,20 @@ $(function(){
 
   function drawLines(lineLocs){
     for(var a = 0; a < lineLocs.length; a++){
-      var x = feetXToPixels(lineLocs[a][0]) - 1
-      var y = feetYToPixels(lineLocs[a][1]) - 1
-      var width, height;
+      var x = feetXToPixels(lineLocs[a][0])
+      var y = feetYToPixels(lineLocs[a][1])
+      //the x and y values to move to
+      var to_x, to_y
       if(lineLocs[a][2] == 'horizontal'){
-        width = lineLocs[a][3] * FEET
-        height = 2
+        to_y = y
+        to_x = x + lineLocs[a][3] * FEET
       }
       else{
-        width = 2
-        height = lineLocs[a][3] * FEET
+        to_x = x
+        to_y = y + lineLocs[a][3] * FEET
       }
-      var line = paper.rect(x, y, width, height)
-      line.attr('fill', LINE_COLORS[lineLocs[a][4]])
+      var line = paper.path("M" + x + "," + y + "L" + to_x + "," + to_y)
+      line.attr('stroke', LINE_COLORS[lineLocs[a][4]])
     }
   }
 
@@ -190,8 +193,8 @@ $(function(){
   function drawBus(){
     var bus_x = feetXToPixels(225)
     var bus_y = feetYToPixels(47)
-    var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET)
+    var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET, 4)
     bus.attr('fill', '#fff')
-    bus.animate({transform: 'T-' + feetXToPixels(20) + ' 0'}, 2000, '<>')
+    return bus
   }
 })
