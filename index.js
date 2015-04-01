@@ -127,8 +127,12 @@ $(function(){
 
   BUS = drawBus()
 
-  var path = paper.path('M840,181L705,181C655,181,605,217,555,217L165,217').attr('stroke', 'orange')
-  animateAlongPath(path, BUS, 30 * FEET, 5 * FEET, 5000, 0)
+  var path = paper.path('M840,181' +
+                        'L685,181' +
+                        'C655,181,605,217,525,217' +
+                        'L135,217'
+                        ).attr('stroke', 'orange')
+  animateAlongPath(path, BUS, 20 * FEET, 5 * FEET, 5000, 0)
 
   $('.buttons').on('click', 'button', function(){
     alert('These buttons are not yet functional. Please check back later.')
@@ -207,8 +211,8 @@ $(function(){
   }
 
   function drawBus(){
-    var bus_x = feetXToPixels(225)
-    var bus_y = feetYToPixels(49)
+    var bus_x = feetXToPixels(235)
+    var bus_y = feetYToPixels(47)
     var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET, 4)
     bus.attr('fill', '#fff')
     bus.attr('text', 'BUS')
