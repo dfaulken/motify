@@ -26,7 +26,7 @@ LINE_COLORS = {
   white: '#fff'
 }
 //number of pixels at which the bus steps along the path
-ANIM_STEP = 10
+ANIM_STEP = 2
 
 $(function(){
   var paper_div = $('.paper')
@@ -128,7 +128,7 @@ $(function(){
   BUS = drawBus()
 
   var path = paper.path('M840,181L705,181C655,181,605,217,555,217L165,217').attr('stroke', 'orange')
-  animateAlongPath(path, BUS, 30 * FEET, 5 * FEET, 10000, 0)
+  animateAlongPath(path, BUS, 30 * FEET, 5 * FEET, 5000, 0)
 
   $('.buttons').on('click', 'button', function(){
     alert('These buttons are not yet functional. Please check back later.')
@@ -208,7 +208,7 @@ $(function(){
 
   function drawBus(){
     var bus_x = feetXToPixels(225)
-    var bus_y = feetYToPixels(47)
+    var bus_y = feetYToPixels(49)
     var bus = paper.rect(bus_x, bus_y, 40 * FEET, 10 * FEET, 4)
     bus.attr('fill', '#fff')
     bus.attr('text', 'BUS')
@@ -227,8 +227,13 @@ $(function(){
   function pathTransformationAtStep(path, elem, rot_x, rot_y, step){
     var p = path.getPointAtLength(step * ANIM_STEP)
     var box = elem.getBBox(true)
-    var transformation = "T" + [Math.round(p.x) - (box.x + rot_x), Math.round(p.y) - (box.y + rot_y)] + "R" + (p.alpha - 180)
-    //if(step == 20){debugger}
+    var r = p.alpha - 180
+    //uncomment once rotating around a moving point works
+    //var currBox = elem.getBBox(false)
+    //var rel_rot_x = currBox.x + (box.height * Math.sin(-r) + Math.cos(-r) * (box.width - (rot_y * Math.sin(-r) + box.width - rot_x)))
+    //var rel_rot_y = currBox.y + (box.height * Math.cos(-r) + Math.sin(-r) * (rot_x - (rot_y / Math.tan(-r))))
+    //var transformation = "T" + [Math.round(p.x) - (box.x + rot_x), Math.round(p.y) - (box.y + rot_y)] + "R" + [r, rel_rot_x, rel_rot_y]
+    var transformation = "T" + [Math.round(p.x) - (box.x + rot_x), Math.round(p.y) - (box.y + rot_y)] + "R" + r
     return transformation
   }
 })
