@@ -3,7 +3,7 @@ BUS = null
 //number of pixels that counts as 1 foot
 FEET = 3
 //CSS margin around the paper
-LEFT_MARGIN = 50
+LEFT_MARGIN = 100
 MARGIN = 25
 //width of the canvas, from CSS
 CANVAS_WIDTH = 900
@@ -124,6 +124,8 @@ $(function(){
   var cones = drawCones(coneData)
 
   BUS = drawBus()
+
+  var path = paper.path('M880,181L755,181C705,181,655,217,605,217L215,217').attr('stroke', 'orange')
 
   $('.buttons').on('click', 'button', function(){
     alert('These buttons are not yet functional. Please check back later.')
